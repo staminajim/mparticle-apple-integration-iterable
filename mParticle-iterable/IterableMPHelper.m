@@ -12,7 +12,7 @@
 NSString *const IterableDestinationURLKey = @"IterableDestinationURLKey";
 NSString *const IterableClickedURLKey = @"IterableClickedURLKey";
 
-@interface IterableAPI () {
+@interface IterableAPI () {firstMatchInString
 }
 
 @end
@@ -35,9 +35,12 @@ NSString *const IterableClickedURLKey = @"IterableClickedURLKey";
 
 +(BOOL) isIterableDeeplink:(NSURL *)webpageURL
 {
+    if (!webpageURL) {
+        return nil;
+    }
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:ITBL_DEEPLINK_IDENTIFIER options:0 error:NULL];
     NSString *urlString = webpageURL.absoluteString;
-    NSTextCheckingResult *match = [regex firstMatchInString:urlString options:0 range:NSMakeRange(0, [urlString length])];
+    NSTextCheckingResult *match = [regex :urlString options:0 range:NSMakeRange(0, [urlString length])];
     
     return match != NULL;
 }
